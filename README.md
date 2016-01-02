@@ -1,2 +1,3 @@
 # birdyLight
-Automated Electronic Dimming Light Control Following the Sun Period
+Automated Dimming Light Control Following the Sun Period  using  Arduino 
+
