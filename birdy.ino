@@ -79,9 +79,6 @@ void setup()
   tmptr.tm_hour = now.hour();
   tmptr.tm_min = now.minute();
   tmptr.tm_sec = now.second();
-  //tmptr.tm_wday = 
-  //tmptr.tm_
-  //tmptr.tm_
   tmptr.tm_isdst = 1;
   set_position( MY_LATITUDE * ONE_DEGREE, MY_LONGITUDE * ONE_DEGREE);
   set_zone(2 * ONE_HOUR);
@@ -188,15 +185,12 @@ void loop()
     digitalWrite(9,LOW);
   }else if (currsec >= DAWN_SECONDS && currsec <= DAWN_SECONDS+SUNCHANGE_DURATION_SECONDS){
     state=2;
-    // output pwm with a different duty cycle
-    //int level = currsec-DAWN_SECONDS;
     float percentage = (float)(DAWN_SECONDS+SUNCHANGE_DURATION_SECONDS-currsec)/SUNCHANGE_DURATION_SECONDS;
     int level = round(255-(percentage * 255));
     int percent_int = round(100-100*percentage);    
     
     digitalWrite(9,LOW);
     analogWrite(10, level);
-    //float percentage = floor(((float)level/255)*100);
     lcd.setCursor(10,1);
     lcd.print("SR");
     lcd.setCursor(13,1);
@@ -211,8 +205,6 @@ void loop()
   }else if (currsec <= DUSK_SECONDS && currsec >= DUSK_SECONDS-SUNCHANGE_DURATION_SECONDS){
     state=3;
     // output pwm with a different duty cycle
-    //int level = floor((int)(255-(DUSK_SECONDS - currsec)/(SUNCHANGE_DURATION_SECONDS)));
-    //float percentage = floor(((float)level/255)*100);
     float percentage = (float)(currsec-DUSK_SECONDS+SUNCHANGE_DURATION_SECONDS)/SUNCHANGE_DURATION_SECONDS;
     int level = 255-round(percentage * 255);
     int percent_int = round(100-100*percentage);
